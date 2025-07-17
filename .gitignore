@@ -1,0 +1,80 @@
+# =================================================================
+# General / OS
+# =================================================================
+# Files and directories created by macOS, Windows, and Linux systems
+.DS_Store
+Thumbs.db
+*~
+*.swp
+
+
+# =================================================================
+# IDE / Editor
+# =================================================================
+# VS Code specific settings
+.vscode/*
+# Don't ignore these VS Code files if you want to share settings with your team
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# JetBrains IDEs (WebStorm, etc.)
+.idea/
+
+
+# =================================================================
+# Node.js / General Dependencies
+# =================================================================
+# Dependency directories for all sub-projects (backend, frontend, etc.)
+node_modules/
+
+# Log files
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+
+# =================================================================
+# Environment Variables
+# =================================================================
+# Environment variables are secret and should never be committed.
+# This covers .env, .env.local, .env.development.local, etc.
+.env
+.env.*.local
+.env.local
+
+
+# =================================================================
+# Build Output & Compiled Files
+# =================================================================
+# This will ignore the 'dist' folder in both the 'backend' and 'frontend' directories,
+# which is the standard output for TypeScript and Vite builds.
+dist/
+build/
+
+
+# =================================================================
+# Test & Coverage Reports
+# =================================================================
+coverage/
+.nyc_output/
+
+
+# =================================================================
+# Miscellaneous
+# =================================================================
+# Optional npm cache directory
+.npm
+
+# Optional REPL history
+.node_repl_history
