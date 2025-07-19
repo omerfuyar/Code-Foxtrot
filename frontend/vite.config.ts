@@ -3,6 +3,6 @@ import react from '@vitejs/plugin-react'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
-  base: '/Code-Foxtrot/', // <-- ADD THIS LINE
+	plugins: [react()],
+	base: '/Code-Foxtrot/', // <-- ADD THIS LINE
 })

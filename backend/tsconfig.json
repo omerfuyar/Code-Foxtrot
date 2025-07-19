@@ -4,9 +4,17 @@
         "module": "commonjs",
         "rootDir": "./src",
         "outDir": "./dist",
+        "strict": true,
+        "skipLibCheck": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "erasableSyntaxOnly": true,
+        "noFallthroughCasesInSwitch": true,
+        "noUncheckedSideEffectImports": true,
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
-        "strict": true,
-        "skipLibCheck": true
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "noImplicitReturns": true,
     }
 }
