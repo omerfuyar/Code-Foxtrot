@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import "./App.css";
 
 function App() {
@@ -25,7 +25,7 @@ function App() {
 		const canvas = canvasRef.current;
 		if (!canvas) throw new Error("Canvas not found.");
 
-		const context = canvas.getContext("2d");
+		const context = canvas.getContext("2d", { alpha: false });
 		if (!context) throw new Error("Failed to get canvas context 2d.");
 
 		context.fillStyle = "blue";
@@ -42,6 +42,7 @@ function App() {
 					onChange={(event) => setInputFieldValue(event.target.value)}
 					placeholder="Type something here..."
 				/>
+
 				<p>You are typing: <strong>{inputFieldValue}</strong></p>
 
 				<hr />

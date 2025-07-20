@@ -1,4 +1,4 @@
-import mongoose, { ConnectionStates } from 'mongoose';
+import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
 // Load environment variables from .env file
