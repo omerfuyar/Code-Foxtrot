@@ -12,12 +12,12 @@ interface ImageProperties {
 }
 
 const Image: React.FC<ImageProperties> = ({ src, alt, className, size }) => {
-    const combinedClassName = `image ${className || ''}`.trim();
+    const combinedClassName = `
+    image 
+    ${className || ''}
+    `.trim();
 
     const cssStyles: React.CSSProperties = {};
-
-    const imageRef = React.useRef<HTMLImageElement | null>(null);
-    //const image = imageRef.current;
 
     if (size) {
         cssStyles.width = `${size.width}px`;
@@ -27,14 +27,11 @@ const Image: React.FC<ImageProperties> = ({ src, alt, className, size }) => {
     return (
         <div>
             <img
-                ref={imageRef}
                 className={combinedClassName}
                 src={src}
                 alt={alt}
                 style={cssStyles}
-            >
-
-            </img>
+            />
         </div>
     );
 };

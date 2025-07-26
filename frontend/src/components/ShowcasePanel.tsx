@@ -6,7 +6,10 @@ interface ShowcasePanelProperties {
 }
 
 const ShowcasePanel: React.FC<ShowcasePanelProperties> = (properties) => {
-    const combinedClassName = `showcase-panel ${properties.className}`.trim();
+    const combinedClassName = `
+    showcase-panel 
+    ${properties.className}
+    `.trim();
 
     return (
         <div className={combinedClassName}>

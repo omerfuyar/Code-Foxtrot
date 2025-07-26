@@ -1,8 +1,6 @@
 import React from 'react';
 import './Canvas.css';
 
-const COMPONENT_CLASS_NAME_CANVAS = "custom-canvas";
-
 interface CanvasProps {
     className?: string;
 
@@ -16,7 +14,10 @@ interface CanvasProps {
 const Canvas: React.FC<CanvasProps> = (properties) => {
     const cssStyles: React.CSSProperties = {};
 
-    const combinedClassName = `${COMPONENT_CLASS_NAME_CANVAS} ${properties.className || ''}`.trim();
+    const combinedClassName = `
+    custom-canvas 
+    ${properties.className || ''}
+    `.trim();
 
     if (properties.position) {
         cssStyles.position = "absolute";

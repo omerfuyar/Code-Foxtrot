@@ -1,20 +1,22 @@
 import React from 'react';
 import './TopBar.css';
 
-interface TopBarSectionProps {
+interface TopBarSectionProperties {
     children: React.ReactNode;
 }
 
-const TopBarLeft: React.FC<TopBarSectionProps> = (properties) => {
+const TopBarLeft: React.FC<TopBarSectionProperties> = (properties) => {
     return <div className="top-bar-left">{properties.children}</div>;
 };
 
-const TopBarRight: React.FC<TopBarSectionProps> = (properties) => {
+const TopBarRight: React.FC<TopBarSectionProperties> = (properties) => {
     return <div className="top-bar-right">{properties.children}</div>;
 };
 
 interface TopBarProperties {
     className?: string;
+
+    minHeight?: number;
 
     maxHeight?: number;
 
@@ -22,12 +24,16 @@ interface TopBarProperties {
 }
 
 const TopBarComponent: React.FC<TopBarProperties> = (properties) => {
-    const combinedClassName = `top-bar ${properties.className || ''}`.trim();
+    const combinedClassName = `
+    top-bar 
+    ${properties.className || ''}
+    `.trim();
 
     const cssStyles: React.CSSProperties = {};
 
-    const topBarRef = React.useRef<HTMLDivElement | null>(null);
-    // const topBar = topBarRef.current;
+    if (properties.minHeight) {
+        cssStyles.minHeight = `${properties.minHeight}px`;
+    }
 
     if (properties.maxHeight) {
         cssStyles.maxHeight = `${properties.maxHeight}px`;
@@ -35,7 +41,6 @@ const TopBarComponent: React.FC<TopBarProperties> = (properties) => {
 
     return (
         <div
-            ref={topBarRef}
             className={combinedClassName}
             style={cssStyles}
         >
