@@ -1,4 +1,4 @@
 # Code-Foxtrot
 
--   This project is a test project for developing a full stack web application using MERN stack (React, Node.js, and MongoDB).
--   
+* This project first started to create a full stack web application using MERN stack (React, Node.js, and MongoDB).
+* Now I use it for experimenting any kind of network ideas.
