@@ -22,6 +22,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     const response = await fetch(`${API_URL}/api/start`, {
                         method: 'GET',
                         mode: 'cors', // allow cross-origin
+                        headers: {
+                            'ngrok-skip-browser-warning': 'true' // Add this header
+                        }
                     });
                     console.log('Response status:', response.status);
                     console.log('Response headers:', response.headers);
