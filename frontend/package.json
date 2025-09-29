@@ -5,7 +5,7 @@
 	"private": true,
 	"homepage": "https://omerfuyar.github.io/Code-Foxtrot",
 	"scripts": {
-		"build": "tsc && copy index.html build && copy index.css build",
+		"build": "tsc && cp index.html build && cp index.css build",
 		"dev": "nodemon",
 		"deploy": "gh-pages -d build"
 	},
