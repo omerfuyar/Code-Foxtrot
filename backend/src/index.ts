@@ -24,6 +24,7 @@ const server = http.createServer((req, res) => {
 	if (req.url === '/api/start' && req.method === 'GET') {
 		res.writeHead(200, { 'Content-Type': 'application/json' });
 		res.end(JSON.stringify({ status: 'started' }));
+		console.log('Handled /api/start request');
 	} else if (req.url === '/' || req.url === '/index.html') {
 		const htmlContent = fs.readFileSync(path.join(frontendPath, 'index.html'), 'utf8');
 		res.writeHead(200, { 'Content-Type': 'text/html' });

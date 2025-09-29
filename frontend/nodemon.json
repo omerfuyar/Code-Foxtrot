@@ -3,5 +3,5 @@
         "src"
     ],
     "ext": "ts,html,css",
-    "exec": "eslint . --fix && tsc && live-server --port=5000 --open=index.html --watch=./build"
+    "exec": "eslint . --fix && npm run build && live-server --port=5000 --open=index.html --watch=./build"
 }

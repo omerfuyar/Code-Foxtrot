@@ -3,5 +3,5 @@
         "src"
     ],
     "ext": "ts",
-    "exec": "eslint . --fix && tsc && node ./build/index.js"
+    "exec": "eslint . --fix && npm run build && node ./build/index.js"
 }

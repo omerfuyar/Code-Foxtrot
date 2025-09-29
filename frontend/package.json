@@ -5,7 +5,7 @@
 	"private": true,
 	"homepage": "https://omerfuyar.github.io/Code-Foxtrot",
 	"scripts": {
-		"build": "tsc && cp index.html build && cp index.css build",
+		"build": "tsc && shx cp index.html build && shx cp index.css build",
 		"dev": "nodemon",
 		"deploy": "gh-pages -d build"
 	},
@@ -19,6 +19,7 @@
 		"globals": "^16.4.0",
 		"live-server": "^1.2.0",
 		"nodemon": "^3.1.10",
+		"shx": "^0.4.0",
 		"ts-node": "^10.9.2",
 		"typescript": "^5.9.2",
 		"typescript-eslint": "^8.44.1"
