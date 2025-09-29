@@ -1,5 +1,6 @@
 "use strict";
-const API_URL = 'https://patrice-trypanosomal-sherryl.ngrok-free.dev';
+//const API_URL = 'https://patrice-trypanosomal-sherryl.ngrok-free.dev';
+const API_URL = 'https://code-foxtrot.onrender.com';
 const rootElement = document.getElementById('root');
 if (rootElement) {
     const textElement = document.createElement('div');
@@ -19,15 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     dataContainer.textContent = 'Fetching...';
                     const response = await fetch(`${API_URL}/api/start`);
                     if (!response.ok) {
-                        const contentType = response.headers.get('content-type');
-                        if (contentType && contentType.includes('application/json')) {
-                            const errorData = await response.json();
-                            throw new Error(`API error: ${JSON.stringify(errorData)}`);
-                        }
-                        else {
-                            const text = await response.text();
-                            throw new Error(`HTTP error! Status: ${response.status}. Response: ${text.substring(0, 100)}...`);
-                        }
+                        const text = await response.text();
+                        console.log(`Raw response: ${text}`);
                     }
                     const data = await response.json();
                     dataContainer.textContent = JSON.stringify(data, null, 2);
