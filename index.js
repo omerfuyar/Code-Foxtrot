@@ -20,16 +20,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     dataContainer.textContent = 'Fetching...';
                     console.log('Fetching from:', `${API_URL}/api/start`);
                     const response = await fetch(`${API_URL}/api/start`, {
-                        mode: 'cors',
-                        credentials: 'same-origin'
+                        method: 'GET',
+                        mode: 'cors', // allow cross-origin
                     });
                     console.log('Response status:', response.status);
                     console.log('Response headers:', response.headers);
                     if (!response.ok) {
                         const text = await response.text();
-                        console.log(`Raw response: ${text}`);
+                        throw new Error(`HTTP ${response.status}: ${text}`);
                     }
-                    const data = await response.json();
+                    const data = (await response.json());
                     dataContainer.textContent = JSON.stringify(data, null, 2);
                 }
                 catch (error) {
