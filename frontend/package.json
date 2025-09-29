@@ -5,9 +5,9 @@
 	"private": true,
 	"homepage": "https://omerfuyar.github.io/Code-Foxtrot",
 	"scripts": {
-		"build": "tsc",
+		"build": "tsc && copy index.html build && copy index.css build",
 		"dev": "nodemon",
-		"deploy": "npm run build && gh-pages -d ."
+		"deploy": "gh-pages -d build"
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.36.0",

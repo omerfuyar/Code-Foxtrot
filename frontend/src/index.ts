@@ -1,3 +1,6 @@
+const API_URL = 'https://patrice-trypanosomal-sherryl.ngrok-free.dev';
+//const API_URL = 'https://code-foxtrot.onrender.com';
+
 // Define a type for the API response
 interface ApiResponse {
 	status: string;
@@ -17,6 +20,8 @@ if (rootElement) {
 
 // Add functionality for the fetch button
 document.addEventListener('DOMContentLoaded', () => {
+	// Get API URL from environment or default to local
+
 	const fetchDataButton = document.getElementById('fetch-data');
 	const dataContainer = document.getElementById('data-container');
 
@@ -26,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			void (async () => {
 				try {
 					dataContainer.textContent = 'Fetching...';
-					const response = await fetch('https://patrice-trypanosomal-sherryl.ngrok-free.dev/api/start');
+					const response = await fetch(`${API_URL}/api/start`);
 
 					if (!response.ok) {
 						throw new Error(`HTTP error! Status: ${response.status}`);
