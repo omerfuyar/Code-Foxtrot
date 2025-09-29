@@ -7,6 +7,7 @@ const server = http.createServer((request, response) => {
 	response.setHeader('Access-Control-Allow-Origin', '*');
 	response.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
 	response.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+	response.setHeader('Access-Control-Allow-Headers', 'Content-Type, ngrok-skip-browser-warning');
 
 	console.log(`Received ${request.method} request for ${request.url}`);
 
