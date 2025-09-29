@@ -6,7 +6,6 @@
 	"scripts": {
 		"build": "tsc",
 		"dev": "nodemon",
-		"lint": "eslint . --fix",
 		"start": "node build/index.js"
 	},
 	"keywords": [],

@@ -1,12 +1,13 @@
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
-import eslint from '@eslint/js';
 
 export default tseslint.config(
     {
         ignores: ['build/', 'node_modules/'],
     },
-    eslint.configs.recommended,
+    
+    tseslint.configs.recommended,
+
     {
         files: ['src/**/*.ts'],
         extends: [...tseslint.configs.recommendedTypeChecked],

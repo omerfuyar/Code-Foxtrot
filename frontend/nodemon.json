@@ -3,5 +3,5 @@
         "src"
     ],
     "ext": "ts,html,css",
-    "exec": "tsc"
+    "exec": "tsc && eslint . --fix"
 }
