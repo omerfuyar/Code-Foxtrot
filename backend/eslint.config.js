@@ -6,8 +6,10 @@ export default tseslint.config(
         // Apply to all files
         ignores: ["build/", "node_modules/"],
     },
+    
     // Base recommended rules
-    "eslint:recommended",
+    tseslint.configs.recommended,
+
     {
         // Apply only to TypeScript files
         files: ["src/**/*.ts"],
@@ -26,6 +28,7 @@ export default tseslint.config(
             "semi": ["error", "always"],
         },
     },
+    
     {
         // Configuration for JS files, like this config file
         files: ["*.js"],

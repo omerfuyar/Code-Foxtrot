@@ -7,7 +7,6 @@
 	"scripts": {
 		"build": "tsc",
 		"dev": "nodemon",
-		"lint": "eslint . --fix",
 		"start": "node build/index.js"
 	},
 	"keywords": [],
@@ -25,5 +24,8 @@
 		"ts-node": "^10.9.2",
 		"typescript": "^5.8.3",
 		"typescript-eslint": "^8.44.1"
+	},
+	"dependencies": {
+		"dotenv": "^17.2.2"
 	}
 }
