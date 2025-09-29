@@ -2,19 +2,20 @@
     "compilerOptions": {
         "target": "es2020",
         "module": "nodenext",
+        "moduleResolution": "nodenext",
         "rootDir": "./src",
         "outDir": "./build",
         "strict": true,
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
         "skipLibCheck": true,
+        "resolveJsonModule": true,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
-        "noFallthroughCasesInSwitch": true,
-        "noImplicitAny": true,
-        "noImplicitThis": true,
         "noImplicitReturns": true,
-        "resolveJsonModule": true
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitOverride": true,
+        "exactOptionalPropertyTypes": true
     },
     "include": [
         "src/**/*.ts"

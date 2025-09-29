@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			void (async () => {
 				try {
 					dataContainer.textContent = 'Fetching...';
-					const response = await fetch('http://localhost:3000/api/start');
+					const response = await fetch('https://patrice-trypanosomal-sherryl.ngrok-free.dev/api/start');
 
 					if (!response.ok) {
 						throw new Error(`HTTP error! Status: ${response.status}`);
