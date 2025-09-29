@@ -1,5 +1,6 @@
 const API_URL = 'https://patrice-trypanosomal-sherryl.ngrok-free.dev';
 //const API_URL = 'https://code-foxtrot.onrender.com';
+//const API_URL = 'http://localhost:3000';
 
 // Define a type for the API response
 interface ApiResponse {
@@ -34,7 +35,14 @@ document.addEventListener('DOMContentLoaded', () => {
 					const response = await fetch(`${API_URL}/api/start`);
 
 					if (!response.ok) {
-						throw new Error(`HTTP error! Status: ${response.status}`);
+						const contentType = response.headers.get('content-type');
+						if (contentType && contentType.includes('application/json')) {
+							const errorData: unknown = await response.json();
+							throw new Error(`API error: ${JSON.stringify(errorData)}`);
+						} else {
+							const text = await response.text();
+							throw new Error(`HTTP error! Status: ${response.status}. Response: ${text.substring(0, 100)}...`);
+						}
 					}
 
 					// Tell TypeScript the expected type of the JSON data
