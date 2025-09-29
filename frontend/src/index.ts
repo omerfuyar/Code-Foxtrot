@@ -1,5 +1,5 @@
-const API_URL = 'https://patrice-trypanosomal-sherryl.ngrok-free.dev';
-//const API_URL = 'https://code-foxtrot.onrender.com';
+//const API_URL = 'https://patrice-trypanosomal-sherryl.ngrok-free.dev';
+const API_URL = 'https://code-foxtrot.onrender.com';
 //const API_URL = 'http://localhost:3000';
 
 interface ApiResponse {
@@ -29,14 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
 					const response = await fetch(`${API_URL}/api/start`);
 
 					if (!response.ok) {
-						const contentType = response.headers.get('content-type');
-						if (contentType && contentType.includes('application/json')) {
-							const errorData: unknown = await response.json();
-							throw new Error(`API error: ${JSON.stringify(errorData)}`);
-						} else {
-							const text = await response.text();
-							throw new Error(`HTTP error! Status: ${response.status}. Response: ${text.substring(0, 100)}...`);
-						}
+						const text = await response.text();
+						console.log(`Raw response: ${text}`);
 					}
 
 					const data = await response.json() as ApiResponse;
