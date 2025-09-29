@@ -24,7 +24,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     dataContainer.textContent = 'Fetching...';
                     const response = await fetch(`${API_URL}/api/start`);
                     if (!response.ok) {
-                        throw new Error(`HTTP error! Status: ${response.status}`);
+                        const contentType = response.headers.get('content-type');
+                        if (contentType && contentType.includes('application/json')) {
+                            const errorData = await response.json();
+                            throw new Error(`API error: ${JSON.stringify(errorData)}`);
+                        }
+                        else {
+                            const text = await response.text();
+                            throw new Error(`HTTP error! Status: ${response.status}. Response: ${text.substring(0, 100)}...`);
+                        }
                     }
                     // Tell TypeScript the expected type of the JSON data
                     const data = await response.json();
