@@ -1,23 +1,38 @@
-import js from '@eslint/js'
-import globals from 'globals'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
-import tseslint from 'typescript-eslint'
-import { globalIgnores } from 'eslint/config'
+import globals from 'globals';
+import tseslint from 'typescript-eslint';
+import eslint from '@eslint/js';
 
-export default tseslint.config([
-	globalIgnores(['dist']),
-	{
-		files: ['**/*.{ts,tsx}'],
-		extends: [
-			js.configs.recommended,
-			tseslint.configs.recommended,
-			reactHooks.configs['recommended-latest'],
-			reactRefresh.configs.vite,
-		],
-		languageOptions: {
-			ecmaVersion: 2020,
-			globals: globals.browser,
-		},
-	},
-])
+export default tseslint.config(
+    {
+        ignores: ['build/', 'node_modules/'],
+    },
+    eslint.configs.recommended,
+    {
+        files: ['src/**/*.ts'],
+        extends: [...tseslint.configs.recommendedTypeChecked],
+        languageOptions: {
+            parser: tseslint.parser,
+            parserOptions: {
+                project: true,
+                tsconfigRootDir: import.meta.dirname,
+            },
+            globals: {
+                ...globals.browser, // <-- This is the key change
+            },
+        },
+        rules: {
+            'indent': ['error', 'tab'],
+            'linebreak-style': ['error', 'unix'],
+            'quotes': ['error', 'single'],
+            'semi': ['error', 'always'],
+        },
+    },
+    {
+        files: ['*.js'],
+        languageOptions: {
+            globals: {
+                ...globals.node,
+            },
+        },
+    }
+);
