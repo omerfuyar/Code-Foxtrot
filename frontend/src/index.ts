@@ -1,8 +1,9 @@
-const API_URL = 'https://patrice-trypanosomal-sherryl.ngrok-free.dev';
+//const API_URL = 'https://patrice-trypanosomal-sherryl.ngrok-free.dev';
 //const API_URL = 'https://code-foxtrot.onrender.com';
-//const API_URL = 'http://localhost:3000';
+const API_URL = 'http://localhost:3000';
 
 interface ApiResponse {
+	statusCode: number;
 	status: string;
 }
 
@@ -23,11 +24,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	if (fetchDataButton && dataContainer) {
 		fetchDataButton.addEventListener('click', () => {
-			console.log('Button clicked');
 			void (async () => {
 				try {
 					dataContainer.textContent = 'Fetching...';
-					console.log('Fetching from:', `${API_URL}/api/start`);
 					const response = await fetch(`${API_URL}/api/start`, {
 						method: 'GET',
 						mode: 'cors', // allow cross-origin
@@ -35,8 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
 							'ngrok-skip-browser-warning': 'true'  // Add this header
 						}
 					});
-					console.log('Response status:', response.status);
-					console.log('Response headers:', response.headers);
 
 					if (!response.ok) {
 						const text = await response.text();
