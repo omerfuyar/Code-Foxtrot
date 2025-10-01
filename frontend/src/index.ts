@@ -1,6 +1,6 @@
-//const API_URL = 'https://patrice-trypanosomal-sherryl.ngrok-free.dev';
+const API_URL = 'https://patrice-trypanosomal-sherryl.ngrok-free.dev';
 //const API_URL = 'https://code-foxtrot.onrender.com';
-const API_URL = 'http://localhost:3000';
+//const API_URL = 'http://localhost:3000';
 
 interface ApiResponse {
 	statusCode: number;
@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
 							'ngrok-skip-browser-warning': 'true'  // Add this header
 						}
 					});
+
 
 					if (!response.ok) {
 						const text = await response.text();
