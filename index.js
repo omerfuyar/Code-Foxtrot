@@ -15,25 +15,22 @@ document.addEventListener('DOMContentLoaded', () => {
     if (fetchDataButton && dataContainer) {
         fetchDataButton.addEventListener('click', () => {
             void (async () => {
-                try {
-                    dataContainer.textContent = 'Fetching...';
-                    const response = await fetch(`${API_URL}/api/start`, {
-                        method: 'GET',
-                        mode: 'cors', // allow cross-origin
-                        headers: {
-                            'ngrok-skip-browser-warning': 'true' // Add this header
-                        }
-                    });
-                    if (!response.ok) {
-                        const text = await response.text();
-                        throw new Error(`HTTP ${response.status}: ${text}`);
+                dataContainer.textContent = 'Testing...';
+                const response = await fetch(`${API_URL}/api/start`, {
+                    method: 'GET',
+                    mode: 'cors', // allow cross-origin
+                    headers: {
+                        'ngrok-skip-browser-warning': 'true' // Add this header
                     }
-                    const data = (await response.json());
-                    dataContainer.textContent = JSON.stringify(data, null, 2);
+                });
+                if (!response.ok) {
+                    const text = await response.text();
+                    console.error(`Failed to fetch data: ${text}`);
+                    dataContainer.textContent = `Failed to fetch data: ${text}`;
                 }
-                catch (error) {
-                    console.error('Failed to fetch data:', error);
-                    dataContainer.textContent = `Error: ${error instanceof Error ? error.message : 'Unknown error'}`;
+                else {
+                    const data = (await response.json());
+                    dataContainer.textContent = JSON.stringify(data);
                 }
             })();
         });
