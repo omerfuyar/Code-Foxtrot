@@ -1,12 +1,12 @@
 /* eslint-disable indent */
 import 'dotenv/config';
-import https from 'https';
+import http from 'http';
 import fs from 'fs';
 import { IncomingMessage, ServerResponse } from 'http';
 import { IpregistryClient } from '@ipregistry/client';
 
 import { RouteHandler } from './routeHandler.js';
-import { HttpsResponse } from './common/types.js';
+import { HttpResponse } from './common/types.js';
 
 const PORT = process.env.PORT || 0;
 const LOG_FILE = process.env.LOG_FILE || '';
@@ -21,7 +21,7 @@ function dateToString(date: Date): string {
 		String(date.getSeconds()).padStart(2, '0');
 }
 
-RouteHandler.registerRoute('/api/start', (method: string): HttpsResponse<unknown> => {
+RouteHandler.registerRoute('/test', (method: string): HttpResponse<unknown> => {
 	switch (method) {
 		case 'GET':
 			return { statusCode: 200, body: { status: 'started' } };
@@ -34,7 +34,7 @@ RouteHandler.registerRoute('/api/start', (method: string): HttpsResponse<unknown
 	}
 });
 
-const server = https.createServer((request: IncomingMessage, response: ServerResponse) => {
+const server = http.createServer((request: IncomingMessage, response: ServerResponse) => {
 	void (async () => {
 		response.setHeader('Access-Control-Allow-Origin', '*');
 		response.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
@@ -66,7 +66,7 @@ const server = https.createServer((request: IncomingMessage, response: ServerRes
 			}
 		});
 
-		const result: HttpsResponse<unknown> | null = RouteHandler.accessRoute(request.url || '', request.method || '');
+		const result: HttpResponse<unknown> | null = RouteHandler.accessRoute(request.url || '', request.method || '');
 
 		response.writeHead(result?.statusCode || 404, { 'Content-Type': 'application/json' });
 		response.end(JSON.stringify(result?.body || { error: 'Not found' }));
