@@ -1,8 +1,10 @@
 /* eslint-disable indent */
 import 'dotenv/config';
 import http from 'http';
+import fs from 'fs';
 
 const PORT = 3000;
+const LOG_FILE = 'server.log';
 
 interface ApiResponse {
 	statusCode: number;
@@ -43,13 +45,29 @@ const server = http.createServer((request, response) => {
 
 	const clientIp =
 		request.headers['x-forwarded-for']?.toString().split(',')[0] ||
-		request.socket.remoteAddress;
+		('!' + request.socket.remoteAddress);
 
 	const clientPort =
 		request.headers['x-forwarded-port']?.toString() ||
-		request.socket.remotePort;
+		('!' + request.socket.remotePort);
 
-	console.log(`[${new Date().toISOString()}]:(${clientIp}:${clientPort})->(${request.method})->(${request.url})`);
+	const date = new Date();
+	const formattedDate = date.getFullYear() + '-' +
+		String(date.getMonth() + 1).padStart(2, '0') + '-' +
+		String(date.getDate()).padStart(2, '0') + ' ' +
+		String(date.getHours()).padStart(2, '0') + ':' +
+		String(date.getMinutes()).padStart(2, '0') + ':' +
+		String(date.getSeconds()).padStart(2, '0');
+
+	const logMessage = `[${formattedDate}]->[${clientIp}:${clientPort}]->[${request.method}]->[${request.url}]`;
+
+	console.log(logMessage);
+
+	fs.appendFile(LOG_FILE, logMessage + '\n', (err) => {
+		if (err) {
+			console.error('Failed to write to log file:', err);
+		}
+	});
 
 	let result: ApiResponse | null = null;
 
