@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
             void (async () => {
                 dataContainer.textContent = 'Testing...';
                 try {
-                    const response = await fetch(`${API_URL}/api/start`, {
+                    const response = await fetch(`${API_URL}/test`, {
                         method: 'GET',
                         mode: 'cors',
                         headers: {
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         throw new Error(`HTTP error! status: ${response.status}`);
                     }
                     const data = (await response.json());
-                    dataContainer.textContent = JSON.stringify(data);
+                    dataContainer.textContent = JSON.stringify(data.body);
                 }
                 catch (e) {
                     const text = e instanceof Error ? e.message : String(e);
