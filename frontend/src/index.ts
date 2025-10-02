@@ -1,11 +1,8 @@
+import { HttpsResponse } from './common/types';
+
 const API_URL = 'https://patrice-trypanosomal-sherryl.ngrok-free.dev';
 //const API_URL = 'https://code-foxtrot.onrender.com';
 //const API_URL = 'http://localhost:3000';
-
-interface ApiResponse {
-	statusCode: number;
-	status: string;
-}
 
 const rootElement = document.getElementById('root');
 
@@ -18,7 +15,6 @@ if (rootElement) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-
 	const fetchDataButton = document.getElementById('fetch-data');
 	const dataContainer = document.getElementById('data-container');
 
@@ -26,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		fetchDataButton.addEventListener('click', () => {
 			void (async () => {
 				dataContainer.textContent = 'Testing...';
+
 				try {
 					const response = await fetch(`${API_URL}/api/start`, {
 						method: 'GET',
@@ -36,17 +33,15 @@ document.addEventListener('DOMContentLoaded', () => {
 					});
 
 					if (!response.ok) {
-						const text = await response.text();
-						console.error(`Failed to fetch data: ${text}`);
-						dataContainer.textContent = `Failed to fetch data: ${text}`;
-					} else {
-						const data = (await response.json()) as ApiResponse;
-						dataContainer.textContent = JSON.stringify(data);
+						throw new Error(`HTTP error! status: ${response.status}`);
 					}
+
+					const data = (await response.json()) as HttpsResponse<unknown>;
+					dataContainer.textContent = JSON.stringify(data);
 				} catch (e) {
 					const text = e instanceof Error ? e.message : String(e);
-					console.error(`Failed to fetch data: ${text}`);
-					dataContainer.textContent = `Failed to fetch data: ${text}`;
+					console.error(text);
+					dataContainer.textContent = text;
 				}
 			})();
 		});
