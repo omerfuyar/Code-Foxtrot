@@ -1,6 +1,6 @@
 interface HttpsResponse<T> {
     statusCode: number;
-    data: T;
+    body: T;
 }
 
 export { HttpsResponse };
