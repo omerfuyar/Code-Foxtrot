@@ -21,7 +21,7 @@ function dateToString(date: Date): string {
 		String(date.getSeconds()).padStart(2, '0');
 }
 
-RouteHandler.registerRoute('/api/start', (method: string): HttpsResponse<unknown> => {
+RouteHandler.registerRoute('/test', (method: string): HttpsResponse<unknown> => {
 	switch (method) {
 		case 'GET':
 			return { statusCode: 200, body: { status: 'started' } };
