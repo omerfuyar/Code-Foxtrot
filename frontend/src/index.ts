@@ -1,7 +1,7 @@
-import { HttpsResponse } from './common/types';
+import { HttpsResponse as HttpResponse } from './common/types';
 
-const API_URL = 'https://patrice-trypanosomal-sherryl.ngrok-free.dev';
-//const API_URL = 'https://code-foxtrot.onrender.com';
+const API_URL = 'http://patrice-trypanosomal-sherryl.ngrok-free.dev';
+//const API_URL = 'http://code-foxtrot.onrender.com';
 //const API_URL = 'http://localhost:3000';
 
 const rootElement = document.getElementById('root');
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
 						throw new Error(`HTTP error! status: ${response.status}`);
 					}
 
-					const data = (await response.json()) as HttpsResponse<unknown>;
+					const data = (await response.json()) as HttpResponse<unknown>;
 					dataContainer.textContent = JSON.stringify(data.body);
 				} catch (e) {
 					const text = e instanceof Error ? e.message : String(e);

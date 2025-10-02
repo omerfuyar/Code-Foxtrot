@@ -1,6 +1,6 @@
-interface HttpsResponse<T> {
+interface HttpResponse<T> {
     statusCode: number;
     body: T;
 }
 
-export { HttpsResponse };
+export { HttpResponse as HttpsResponse };

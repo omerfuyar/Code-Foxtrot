@@ -1,14 +1,14 @@
 /* eslint-disable indent */
 
-import { HttpsResponse } from './common/types.js';
+import { HttpResponse } from './common/types.js';
 
 class RouteHandler {
-    private static handler: { [url: string]: (method: string) => HttpsResponse<unknown>; } = {};
+    private static handler: { [url: string]: (method: string) => HttpResponse<unknown>; } = {};
 
-    static registerRoute(url: string, callback: (method: string) => HttpsResponse<unknown>): void {
+    static registerRoute(url: string, callback: (method: string) => HttpResponse<unknown>): void {
         RouteHandler.handler[url] = callback;
     }
-    static accessRoute(url: string, method: string): HttpsResponse<unknown> | null {
+    static accessRoute(url: string, method: string): HttpResponse<unknown> | null {
         return RouteHandler.handler[url]?.(method) || null;
     }
 }

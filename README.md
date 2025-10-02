@@ -16,3 +16,4 @@
 ## Finally
 * Finally we have a globally accessible backend running in our own machine.
 * I used to use Render servers to do this, but now I decided to go that way. It is still configurable in the code.
+* Types in the src/common directories must be the same all the time.
