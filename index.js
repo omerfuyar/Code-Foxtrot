@@ -1,5 +1,5 @@
-const API_URL = 'http://patrice-trypanosomal-sherryl.ngrok-free.dev';
-//const API_URL = 'http://code-foxtrot.onrender.com';
+const API_URL = 'https://patrice-trypanosomal-sherryl.ngrok-free.dev';
+//const API_URL = 'https://code-foxtrot.onrender.com';
 //const API_URL = 'http://localhost:3000';
 const rootElement = document.getElementById('root');
 if (rootElement) {
