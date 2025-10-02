@@ -39,7 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
 					const text = await response.text();
 					console.error(`Failed to fetch data: ${text}`);
 					dataContainer.textContent = `Failed to fetch data: ${text}`;
-
 				} else {
 					const data = (await response.json()) as ApiResponse;
 					dataContainer.textContent = JSON.stringify(data);

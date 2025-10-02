@@ -13,21 +13,27 @@ function handleGetRequest(url: string): ApiResponse | null {
 	switch (url) {
 		case '/api/start':
 			return { statusCode: 200, status: 'test' };
-		case '/api/bar':
-			return { statusCode: 200, status: 'bar' };
-		case '/api/baz':
-			return { statusCode: 200, status: 'baz' };
 		default:
 			return null;
 	}
 }
 
 function handlePostRequest(url: string): ApiResponse | null {
-	return { statusCode: 200, status: `bar ${url}` };
+	switch (url) {
+		case '/api/start':
+			return { statusCode: 204, status: `foo ${url}` };
+		default:
+			return null;
+	}
 }
 
 function handleOptionsRequest(url: string): ApiResponse | null {
-	return { statusCode: 204, status: `foo ${url}` };
+	switch (url) {
+		case '/api/start':
+			return { statusCode: 204, status: `foo ${url}` };
+		default:
+			return null;
+	}
 }
 
 const server = http.createServer((request, response) => {
@@ -35,7 +41,7 @@ const server = http.createServer((request, response) => {
 	response.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
 	response.setHeader('Access-Control-Allow-Headers', 'Content-Type, ngrok-skip-browser-warning');
 
-	console.log(`${new Date().toUTCString()} : Received ${request.method} request for "${request.url}" from (${request.socket.remoteAddress}:${request.socket.remotePort})`);
+	console.log(`[${new Date().toISOString()}] : ${request.method} -> "${request.url}" : (${request.socket.remoteAddress}:${request.socket.remotePort}) : (${request.socket.localAddress}:${request.socket.localPort})`);
 
 	let result: ApiResponse | null = null;
 
@@ -60,5 +66,5 @@ const server = http.createServer((request, response) => {
 });
 
 server.listen(PORT, () => {
-	console.log(`Server running at http://localhost:${PORT}`);
+	console.log(`Server running at http://localhost:${PORT}\n`);
 });
