@@ -1,5 +1,6 @@
-"use strict";
 const API_URL = 'https://patrice-trypanosomal-sherryl.ngrok-free.dev';
+//const API_URL = 'https://code-foxtrot.onrender.com';
+//const API_URL = 'http://localhost:3000';
 const rootElement = document.getElementById('root');
 if (rootElement) {
     const textElement = document.createElement('div');
@@ -25,19 +26,15 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     });
                     if (!response.ok) {
-                        const text = await response.text();
-                        console.error(`Failed to fetch data: ${text}`);
-                        dataContainer.textContent = `Failed to fetch data: ${text}`;
+                        throw new Error(`HTTP error! status: ${response.status}`);
                     }
-                    else {
-                        const data = (await response.json());
-                        dataContainer.textContent = JSON.stringify(data);
-                    }
+                    const data = (await response.json());
+                    dataContainer.textContent = JSON.stringify(data);
                 }
                 catch (e) {
                     const text = e instanceof Error ? e.message : String(e);
-                    console.error(`Failed to fetch data: ${text}`);
-                    dataContainer.textContent = `Failed to fetch data: ${text}`;
+                    console.error(text);
+                    dataContainer.textContent = text;
                 }
             })();
         });
@@ -46,3 +43,4 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('Fetch button or data container not found');
     }
 });
+export {};
