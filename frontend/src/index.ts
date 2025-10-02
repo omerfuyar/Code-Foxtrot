@@ -26,22 +26,27 @@ document.addEventListener('DOMContentLoaded', () => {
 		fetchDataButton.addEventListener('click', () => {
 			void (async () => {
 				dataContainer.textContent = 'Testing...';
-				const response = await fetch(`${API_URL}/api/start`, {
-					method: 'GET',
-					mode: 'cors', // allow cross-origin
-					headers: {
-						'ngrok-skip-browser-warning': 'true'  // Add this header
+				try {
+					const response = await fetch(`${API_URL}/api/start`, {
+						method: 'GET',
+						mode: 'cors',
+						headers: {
+							'ngrok-skip-browser-warning': 'true'
+						}
+					});
+
+					if (!response.ok) {
+						const text = await response.text();
+						console.error(`Failed to fetch data: ${text}`);
+						dataContainer.textContent = `Failed to fetch data: ${text}`;
+					} else {
+						const data = (await response.json()) as ApiResponse;
+						dataContainer.textContent = JSON.stringify(data);
 					}
-				});
-
-
-				if (!response.ok) {
-					const text = await response.text();
+				} catch (e) {
+					const text = e instanceof Error ? e.message : String(e);
 					console.error(`Failed to fetch data: ${text}`);
 					dataContainer.textContent = `Failed to fetch data: ${text}`;
-				} else {
-					const data = (await response.json()) as ApiResponse;
-					dataContainer.textContent = JSON.stringify(data);
 				}
 			})();
 		});
