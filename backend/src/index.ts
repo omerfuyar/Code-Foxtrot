@@ -41,7 +41,15 @@ const server = http.createServer((request, response) => {
 	response.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
 	response.setHeader('Access-Control-Allow-Headers', 'Content-Type, ngrok-skip-browser-warning');
 
-	console.log(`[${new Date().toISOString()}] : ${request.method} -> "${request.url}" : (${request.socket.remoteAddress}:${request.socket.remotePort}) : (${request.socket.localAddress}:${request.socket.localPort})`);
+	const clientIp =
+		request.headers['x-forwarded-for']?.toString().split(',')[0] ||
+		request.socket.remoteAddress;
+
+	const clientPort =
+		request.headers['x-forwarded-port']?.toString() ||
+		request.socket.remotePort;
+
+	console.log(`[${new Date().toISOString()}]:(${clientIp}:${clientPort})->(${request.method})->(${request.url})`);
 
 	let result: ApiResponse | null = null;
 
